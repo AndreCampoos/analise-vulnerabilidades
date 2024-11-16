@@ -65,14 +65,14 @@
                         session_start();
                         $_SESSION["nome"] = $registo["nome"]; #Armazena o nome do utilizador na sessão
                         $_SESSION['perfil'] = 'adm'; #Armazena o perfil "adm" na sessão
-                        header('Location: areaAdmin.php');
+                        header('Location: admin.php');
                         exit(); #Encera o script (permite que o redirecionamento ocorra corretamente)
                     } else {
                         session_start();
                         $_SESSION["nome"] = $registo["nome"];
-                        $_SESSION["codcliente"] = $registo["codcliente"];
+                        $_SESSION["coduser"] = $registo["coduser"];
                         $_SESSION['perfil'] = 'user';
-                        header('Location: boa.php');
+                        header('Location: user.php');
                         exit();
                     }
                     

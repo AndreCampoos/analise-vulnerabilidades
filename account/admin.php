@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <H1>BOAAAAAAA</H1>
+    <H1>admin</H1>
 </body>
 </html>
