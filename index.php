@@ -19,7 +19,7 @@
       <a class="navbar-brand d-flex align-items-center" href="">
         <img src="img/icon.png" alt="Logotipo" class="logo">
       </a>
-      <a href="opinion.php">Opinion</a>
+      <a style='color: black;' href="opinion.php">Opinion</a>
       <a href="account/login.php">
         <i class="fa-solid fa-user fa-lg"></i>
       </a>

@@ -18,7 +18,7 @@ nav {
     height: 30px;
 }
 
-.fa-user {
+.fa-user{
     color: black;
 }
 
@@ -57,7 +57,6 @@ nav {
     border: 1px solid black;
     border-radius: 10px;
 }
-
 
 /* LOGIN */
 .box{
@@ -260,7 +259,6 @@ h3{
 }
 
 /* SIDEBAR */
-
 
 @media (max-width: 576px) {
     .container-fluid{

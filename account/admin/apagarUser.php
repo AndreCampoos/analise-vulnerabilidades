@@ -67,7 +67,8 @@ if (isset($_GET['user_id'])) {
             <a class="navbar-brand d-flex align-items-center" href="../../index.php">
                 <img src="../../img/icon.png" alt="Logotipo" class="logo">
             </a>
-            <a href="../account/login.php">
+            <a style='color: black;' href="../opinion.php">Opinion</a>
+            <a href="account/login.php">
                 <i class="fa-solid fa-user fa-lg"></i>
             </a>
         </div>

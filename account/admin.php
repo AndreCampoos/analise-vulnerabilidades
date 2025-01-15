@@ -1,4 +1,6 @@
-
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +14,12 @@
     <script src="https://kit.fontawesome.com/bd13738cac.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar navbar-light">
+	<nav class="navbar navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="../index.php">
                 <img src="../img/icon.png" alt="Logotipo" class="logo">
             </a>
+            <a style='color: black;' href="../opinion.php">Opinion</a>
             <a href="account/login.php">
                 <i class="fa-solid fa-user fa-lg"></i>
             </a>
