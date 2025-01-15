@@ -6,33 +6,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análise de Vulnerabilidades - Home</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>Análise de Vulnerabilidades - Registo</title>
+    <link rel="stylesheet" href="../css/main.css?v=1.0"> <!-- ?v=1.0 para forçar a atualização da cache -->
+    <link rel="icon" type="image/x-icon" href="../img/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/bd13738cac.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="../index.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="account/login.php">Sign In</a>
-            </li>
-            </ul>
+    <nav class="navbar navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="../index.php">
+                <img src="../img/icon.png" alt="Logotipo" class="logo">
+            </a>
+            <a href="account/login.php">
+                <i class="fa-solid fa-user fa-lg"></i>
+            </a>
         </div>
     </nav>
 
     <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
         <div class="box-create mb-md-5 col-md-4 mx-auto">
             <div class="form">
-                <h2>Criar Conta</h2>
+                <h2><b>Criar Conta</b></h2>
                 <div class="inputBox mx-auto pt-md-3">
                     <input type="text" name="utilizador" id="iduser" required="required" autocomplete="off">
                     <span>Nome</span>
@@ -57,7 +53,7 @@
                     <i></i>
                 </div>
 
-                <input class="mx-auto" type="submit" value="Enviar">
+                <input class="mx-auto" type="submit" value="Enviar" style='margin-top: 10px;'>
                 <div class="links mx-auto">
                     <a href="login.php">Iniciar Sessão &#10132; </a>
                 </div>
@@ -111,11 +107,11 @@
                 echo"<script>alert('E-mail já registado, tente outro e-mail!')</script>";
             }else{
                 include("../config.php");
-                $query = "INSERT INTO users (name,password,email) VALUES ('$nome','$pass','$email')";
+                $query = "INSERT INTO users (name,password,email, perfil) VALUES ('$nome','$pass','$email', 'user')";
                 $resultado = mysqli_query($liga,$query);
                 if($resultado == true) {
                     echo"<script>alert('Utlizador registado com sucesso!')</script>";
-                    header('Location:/../index.php');
+                    header('Location:../index.php');
                 }else{
                     echo"<script>alert('Utlizador não registado!')</script>";
                 }

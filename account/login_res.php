@@ -6,26 +6,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análise de Vulnerabilidades - Login</title>
-    <link rel="stylesheet" href="../css/main.css?v=1.0"> <!-- ?v=1.0 para forçar a atualização da cache -->
-    <link rel="icon" type="image/x-icon" href="../img/icon.png">
+    <title>Análise de Vulnerabilidades - Home</title>
+    <link rel="stylesheet" href="../css/main.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/bd13738cac.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar navbar-light">
-    <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center" href="../index.php">
-        <img src="../img/icon.png" alt="Logotipo" class="logo">
-      </a>
-      <a href="login.php">
-        <i class="fa-solid fa-user fa-lg"></i>
-      </a>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-  <?php
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="../index.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="account/login.php">Sign In</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <?php
         //Criar váriáveis para informar o utilizador dos erros
         $msg = $errouser = $erropsw = '';
 
@@ -49,13 +53,15 @@
 
                 //Verifica se o par utilizador/password existe na BD
                 $passw = md5($senha); //Desencripta a password para que o user possa entrar na sua conta
-                $sql = "SELECT * FROM users WHERE name='$nome' AND password='$passw' LIMIT 1"; #Faz a consulta à base de dados para verificar se o par user/password existe na tabela clientes
-                $resultado=mysqli_query($liga,$sql); #Executa a consulta SQL
-                $nregistos=mysqli_num_rows($resultado);
+                $sql = "SELECT * FROM users WHERE name=? AND password=? LIMIT 1"; #Faz a consulta à base de dados para verificar se o par user/password existe na tabela clientes
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ss", $nome, $passw);
+                $stmt->execute();
+                $resultado = $stmt->get_result(); #Executa a consulta SQL
 
-                if($nregistos > 0){ //Verifica se existem registos na base de dados que correspondam aos user/password fornecidos
+                if($resultado->num_rows > 0){ //Verifica se existem registos na base de dados que correspondam aos user/password fornecidos
 
-                    $registo = mysqli_fetch_array($resultado);
+                    $registo = $resultado->fetch_assoc();
 
                     if ($registo["perfil"] == 'adm') {
                         session_start();
@@ -81,9 +87,9 @@
     ?>
 
     <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-        <div class="box col-md-4 mx-auto mt-md-5">
+        <div class="box col-md-4 mx-auto">
             <div class="form">
-                <h2><b>Iniciar Sessão</b></h2>
+                <h2>Iniciar Sessão</h2>
                 <div class="inputBox mx-auto pt-md-3">
                     <input type="text" name="nome" required="required" autocomplete="off">
                     <span>Nome</span>
@@ -96,7 +102,7 @@
                     <i></i>
                 </div>
  
-                <input class="mx-auto" type="submit" value="Entrar" style='margin-top: 10px;'>
+                <input class="mx-auto" type="submit" value="Entrar">
                 <div class="links mx-auto">
                     <a href="create.php">Criar conta gratuita &#10132; </a>
                 </div>
